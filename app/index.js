@@ -7,7 +7,7 @@ const bodyParser = require('body-parser');
 const config = require('./config/config');
 
 // Connect to mLab remote db service
-mongoose.connect(config.db.url, {useNewUrlParser: true});
+// mongoose.connect(config.db.url, { useNewUrlParser: true });
 
 const app = express();
 
@@ -19,12 +19,10 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
 
 // Routes
-app.use('/api/auth', require('./routes/authentication'));
-app.use('/api/upload', require('./routes/uploads'))
-app.use('/api/users', require('./routes/users'));
-app.use('/api/invoices', require('./routes/invoices'));
-app.use('/api/workspaces', require('./routes/workspaces'));
+app.get('/', (req, res) => {});
+
+app.use('/api/upload', require('./routes/uploads'));
 
 // Run the server on port 5000
 app.listen(config.port);
-console.log(`server started on port ${config.port}`);   
+console.log(`server started on port ${config.port}`);
